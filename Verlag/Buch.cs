@@ -44,6 +44,10 @@ namespace Verlag
         // Konstruktor keine Auflage 
     public Buch(string autor, string titel)
     {
+        if (String.IsNullOrEmpty(autor))
+        {
+            throw new ArgumentException(nameof(autor), "Der Name des Autors dard keine Sonderzeichen beinhalten");
+        }
 
         foreach (char c in autor)
         {
