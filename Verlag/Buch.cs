@@ -6,40 +6,72 @@ using System.Threading.Tasks;
 
 namespace Verlag
 {
-        public class Buch
+    public class Buch
+    {
+
+        private string autor;
+        private string titel;
+        private int auflage;
+        public string Autor
         {
-            public string Autor { get; set; }
-            public string Titel { get; set; }
-            public int Auflage { get; set; }
-
-            // Konstruktor keine Auflage 
-            public Buch(string autor, string titel)
-            {
-                foreach (char c in autor)
-                {
-                    if (!char.IsLetter(c))
-                    {
-                        throw new ArgumentException(nameof(c), "Der Name des Autors dard keine Sonderzeichen beinhalten");
-                    }
-                }
-                Autor = autor;
-                Titel = titel;
-                Auflage = 1;
-            }
-
-            // Konstruktor mit auflage
-            public Buch(string autor, string titel, int auflage)
-            {
-                if (auflage <= 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(auflage), "Auflage muss größer als 0 sein.");
-                }
-                Autor = autor;
-                Titel = titel;
-                Auflage = auflage;
-            }
+            get { return autor; }
+            set { autor = value; }
         }
     
+
+    public string Titel
+    {
+        get { return titel; }
+        set { titel = value; }
     }
 
+    public int Auflage 
+    { 
+        get { return auflage; }
+        set
+        {
+            if (value <= 0) 
+            {
+                throw new ArgumentOutOfRangeException("Auflage muss größer als 0 sein");
+            }                
+            else
+            {
+                auflage = value;
+            }   
+        }
+    }
 
+        // Konstruktor keine Auflage 
+    public Buch(string autor, string titel)
+    {
+
+        foreach (char c in autor)
+        {
+            if (!char.IsLetter(c))
+            {
+                throw new ArgumentException(nameof(c), "Der Name des Autors dard keine Sonderzeichen beinhalten");
+            }
+        }
+
+        this.titel = titel;
+        this.auflage = 1;
+    }
+
+        // Konstruktor mit auflage
+        public Buch(string autor, string titel, int auflage)
+        {
+            if (auflage <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(auflage), "Auflage muss größer als 0 sein.");
+            }
+            else
+            {
+            this.auflage = auflage;
+
+            }
+
+            this.autor = autor;
+            this.titel = titel;
+        }
+    }
+}
