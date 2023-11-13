@@ -7,20 +7,29 @@ using System.Threading.Tasks;
 namespace Verlag
 {
     
-    
-
         public class Buch
         {
-            public string Autor { get; set; }
-            public string Titel { get; set; }
-            public int Auflage { get; set; }
-
-            // Konstruktor keine Auflage 
-            public Buch(string autor, string titel)
+            private string autor;
+            private string titel;
+            private int auflage;
+            public string Autor
             {
-                Autor = autor;
-                Titel = titel;
-                Auflage = 1;
+                get { return autor; }
+                set { autor = value; }
+            }
+            public string Titel
+        {
+            get { return titel; }
+            set { titel = value; }
+        }
+            public int Auflage { get { return auflage; } set { if (value <= 0) { throw new ArgumentOutOfRangeException("Auflage muss größer als 0 sein"); } else auflage = value; } }
+
+                // Konstruktor keine Auflage 
+                public Buch(string autor, string titel)
+            {
+                this.autor = autor;
+                this.titel = titel;
+                this.auflage = 1;
             }
 
             // Konstruktor mit auflage
@@ -30,10 +39,14 @@ namespace Verlag
                 {
                     throw new ArgumentOutOfRangeException(nameof(auflage), "Auflage muss größer als 0 sein.");
                 }
+                else
+                {
+                this.auflage = auflage;
 
-                Autor = autor;
-                Titel = titel;
-                Auflage = auflage;
+                }
+
+                this.autor = autor;
+                this.titel = titel;
             }
         }
     
