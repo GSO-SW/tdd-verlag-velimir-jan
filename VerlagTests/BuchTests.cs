@@ -99,24 +99,25 @@ namespace VerlagTests
 			Buch b = new Buch("autor", "titel");
 
             //Act
-            b.ISBN13 = isbn13;
+            b.ISBN = isbn13;
 
             //Assert
-            Assert.AreEqual(b.ISBN13, isbn13);
+            Assert.AreEqual(b.ISBN, isbn13);
         }
 
         [TestMethod]
         public void Buch_ISBNPrüfzifferWirdErgänzt()
 		{
             //Arrange
-            string ISBN13OhnePrüfziffer = "978-3770436164";
-            string ISBN13MitPrüf = "978-3770436164";
+            string isbnOhnePrüfziffer = "978-3770436164";
+            string isbnMitPrüftiffer = "978-37704361649";
+            Buch b = new Buch("autor", "titel");
 
-            //Act
-            Buch b = new Buch("autor", "titel", ISBN13);
+			//Act
+			b.ISBN = isbnOhnePrüfziffer;
 
             //Assert
-            Assert.AreEqual(b.ISBN13, "978-37704361649");
+            Assert.AreEqual(b.ISBN, isbnMitPrüftiffer);
         }
 
 		[TestMethod]
