@@ -91,20 +91,50 @@ namespace VerlagTests
 			b.Auflage = auflageNeu;
 		}
 
-		public void Buch_ISBNKannEingegebenWerden()
+        [TestMethod]
+        public void Buch_ISBNKannEingegebenWerden()
 		{
 			//Arrange
-			string ISBN = "978-3770436163";
+			string isbn13 = "978-3770436163";
+			Buch b = new Buch("autor", "titel");
 
             //Act
-            Buch b = new Buch("autor", "titel", ISBN);
+            b.ISBN13 = isbn13;
 
             //Assert
-            Assert.AreEqual(b.ISBN, ISBN);
+            Assert.AreEqual(b.ISBN13, isbn13);
         }
 
-		// DataRow: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest#add-more-features
+        [TestMethod]
+        public void Buch_ISBNPrüfzifferWirdErgänzt()
+		{
+            //Arrange
+            string ISBN13OhnePrüfziffer = "978-3770436164";
+            string ISBN13MitPrüf = "978-3770436164";
+
+            //Act
+            Buch b = new Buch("autor", "titel", ISBN13);
+
+            //Assert
+            Assert.AreEqual(b.ISBN13, "978-37704361649");
+        }
+
 		[TestMethod]
+        public void ConvertISBN13ToISBN10_()
+        {
+            //Arrange
+            string ISBN13 = "978-3770436064";
+			string ISBN10 = 
+
+            //Act
+            Buch b = new Buch("autor", "titel", ISBN13);
+
+            //Assert
+            Assert.AreEqual(b.ISBN13, "978-37704361649");
+        }
+
+        // DataRow: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest#add-more-features
+        [TestMethod]
 		[DataRow("")]
 		[DataRow("#")]
 		[DataRow(";")]
