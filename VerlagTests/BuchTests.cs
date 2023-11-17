@@ -91,6 +91,18 @@ namespace VerlagTests
 			b.Auflage = auflageNeu;
 		}
 
+		public void Buch_ISBNKannEingegebenWerden()
+		{
+			//Arrange
+			string ISBN = "978-3770436163";
+
+            //Act
+            Buch b = new Buch("autor", "titel", ISBN);
+
+            //Assert
+            Assert.AreEqual(b.ISBN, ISBN);
+        }
+
 		// DataRow: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest#add-more-features
 		[TestMethod]
 		[DataRow("")]

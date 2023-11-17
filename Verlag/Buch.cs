@@ -8,7 +8,6 @@ namespace Verlag
 {
     public class Buch
     {
-
         private string autor;
         private string titel;
         private int auflage;
