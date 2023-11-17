@@ -121,7 +121,7 @@ namespace VerlagTests
         }
 
 		[TestMethod]
-        public void ConvertToISBN10_ISBN13WirdZuISBN10Konvertiert()
+        public void ConvertToISBN10_Isbn13WirdZuIsbn10Konvertiert()
         {
             //Arrange
             string isbn13 = "978-3770436064";

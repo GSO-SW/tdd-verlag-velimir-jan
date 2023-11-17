@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,29 @@ namespace Verlag
             this.Auflage = auflage;
             this.Autor = autor;
             this.Titel = titel;
+        }
+
+        public static string ConvertToISBN10(string isbn13)
+        {
+            int checkDigit;
+            string isbn10 = isbn13.Replace("-", "").Remove(0,3);
+            isbn10 = isbn10.Remove(9,1);
+            checkDigit = 
+
+        }
+
+        public static int CalculateISBN10CheckDigit(string isbn) 
+        {
+            if (isbn == null || isbn.Length != 9)
+            {
+                throw new ArgumentException("ISBN-10 sollte 9 Zeichen lang sein.");
+            }
+
+            int sum = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                sum += (i + 1) * (isbn[i] - '0');
+            }
         }
     }
 }
