@@ -11,28 +11,15 @@ namespace Verlag
         private string autor;
         private string titel;
         private int auflage;
+        private string isbn;
+
+        
         public string Autor
         {
             get { return autor; }
-
-            set 
-            {
-                if (String.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException(nameof(value), "Der Name des Autors darf nicht leer sein");
-                }
-
-                foreach (char c in value)
-                {
-                    if (!char.IsLetter(c))
-                    {
-                        throw new ArgumentException(nameof(c), "Der Name des Autors dard keine Sonderzeichen beinhalten");
-                    }
-                }
-
-                autor = value; 
-            }
-        }    
+            set { autor = value; }
+        }
+    
 
     public string Titel
     {
@@ -52,25 +39,50 @@ namespace Verlag
             else
             {
                 auflage = value;
-            }
+            }   
         }
     }
+        public string ISBN
+        {
+            get { return isbn; }
+            set { isbn = value; }
+        }
 
-
-    // Konstruktor keine Auflage 
+        // Konstruktor keine Auflage 
     public Buch(string autor, string titel)
     {
-        this.Autor = autor;
-        this.Titel = titel;
-        this.Auflage = 1;
+        if (String.IsNullOrEmpty(autor))
+        {
+            throw new ArgumentException(nameof(autor), "Der Name des Autors dard keine Sonderzeichen beinhalten");
+        }
+
+        foreach (char c in autor)
+        {
+            if (!char.IsLetter(c))
+            {
+                throw new ArgumentException(nameof(c), "Der Name des Autors dard keine Sonderzeichen beinhalten");
+            }
+        }
+
+        this.titel = titel;
+        this.auflage = 1;
     }
 
-    // Konstruktor mit auflage
-    public Buch(string autor, string titel, int auflage)
-    {
-        this.Auflage = auflage;
-        this.Autor = autor;
-        this.Titel = titel;
-    }
+        // Konstruktor mit auflage
+        public Buch(string autor, string titel, int auflage)
+        {
+            if (auflage <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(auflage), "Auflage muss größer als 0 sein.");
+            }
+            else
+            {
+            this.auflage = auflage;
+
+            }
+
+            this.autor = autor;
+            this.titel = titel;
+        }
     }
 }
