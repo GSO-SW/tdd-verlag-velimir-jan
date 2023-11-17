@@ -11,28 +11,15 @@ namespace Verlag
         private string autor;
         private string titel;
         private int auflage;
+        private string isbn;
+
+        
         public string Autor
         {
             get { return autor; }
-
-            set 
-            {
-                if (String.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException(nameof(value), "Der Name des Autors darf nicht leer sein");
-                }
-
-                foreach (char c in value)
-                {
-                    if (!char.IsLetter(c))
-                    {
-                        throw new ArgumentException(nameof(c), "Der Name des Autors dard keine Sonderzeichen beinhalten");
-                    }
-                }
-
-                autor = value; 
-            }
-        }    
+            set { autor = value; }
+        }
+    
 
         public string Titel
         {
@@ -56,6 +43,11 @@ namespace Verlag
             }
         }
 
+        public string ISBN
+        {
+            get { return isbn; }
+            set { isbn = value; }
+        }
 
         // Konstruktor keine Auflage 
         public Buch(string autor, string titel)
@@ -64,6 +56,7 @@ namespace Verlag
             this.Titel = titel;
             this.Auflage = 1;
         }
+        
 
         // Konstruktor mit auflage
         public Buch(string autor, string titel, int auflage)
