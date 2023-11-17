@@ -34,43 +34,43 @@ namespace Verlag
             }
         }    
 
-    public string Titel
-    {
-        get { return titel; }
-        set { titel = value; }
-    }
-
-    public int Auflage 
-    { 
-        get { return auflage; }
-        set
+        public string Titel
         {
-            if (value <= 0) 
+            get { return titel; }
+            set { titel = value; }
+        }
+
+        public int Auflage 
+        { 
+            get { return auflage; }
+            set
             {
-                throw new ArgumentOutOfRangeException("Auflage muss größer als 0 sein");
-            }                
-            else
-            {
-                auflage = value;
+                if (value <= 0) 
+                {
+                    throw new ArgumentOutOfRangeException("Auflage muss größer als 0 sein");
+                }                
+                else
+                {
+                    auflage = value;
+                }
             }
         }
-    }
 
 
-    // Konstruktor keine Auflage 
-    public Buch(string autor, string titel)
-    {
-        this.Autor = autor;
-        this.Titel = titel;
-        this.Auflage = 1;
-    }
+        // Konstruktor keine Auflage 
+        public Buch(string autor, string titel)
+        {
+            this.Autor = autor;
+            this.Titel = titel;
+            this.Auflage = 1;
+        }
 
-    // Konstruktor mit auflage
-    public Buch(string autor, string titel, int auflage)
-    {
-        this.Auflage = auflage;
-        this.Autor = autor;
-        this.Titel = titel;
-    }
+        // Konstruktor mit auflage
+        public Buch(string autor, string titel, int auflage)
+        {
+            this.Auflage = auflage;
+            this.Autor = autor;
+            this.Titel = titel;
+        }
     }
 }
