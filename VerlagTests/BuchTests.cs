@@ -121,17 +121,19 @@ namespace VerlagTests
         }
 
 		[TestMethod]
-        public void ConvertISBN13ToISBN10_()
+        public void ConvertToISBN10_ISBN13WirdZuISBN10Konvertiert()
         {
             //Arrange
-            string ISBN13 = "978-3770436064";
-			string ISBN10 = 
+            string isbn13 = "978-3770436064";
+			string isbn10 = "3770436067";
+            Buch b = new Buch("autor", "titel");
+			b.ISBN = isbn13;
 
-            //Act
-            Buch b = new Buch("autor", "titel", ISBN13);
+			//Act
+			string testIsbn10 = ConvertToISBN10(b.ISBN);
 
             //Assert
-            Assert.AreEqual(b.ISBN13, "978-37704361649");
+            Assert.AreEqual(testIsbn10, isbn10);
         }
 
         // DataRow: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest#add-more-features
