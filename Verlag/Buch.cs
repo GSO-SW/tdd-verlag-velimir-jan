@@ -46,7 +46,24 @@ namespace Verlag
         public string ISBN
         {
             get { return isbn; }
-            set { isbn = value; }
+            set 
+            { 
+                if (value.Length < 10)
+                {
+                    int summe=0;
+                    for (int i = 1;i<=value.Length;i++)
+                    {
+                        summe = summe+ i*Convert.ToInt32(value[i]);
+                    }
+                    summe = summe % 11;
+                    isbn = String.Concat(value, summe);
+
+                }
+                else
+                {
+                    isbn = value;
+                }
+            }
         }
 
         // Konstruktor keine Auflage 
