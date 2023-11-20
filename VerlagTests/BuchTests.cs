@@ -110,7 +110,7 @@ namespace VerlagTests
 		{
             //Arrange
             string isbnOhnePrüfziffer = "978-3-431-07055";
-            string isbnMitPrüftiffer = "978-3-431-07055-2";
+            string isbnMitPrüftiffer = "9783431070552";
             Buch b = new Buch("autor", "titel");
 
 			//Act
