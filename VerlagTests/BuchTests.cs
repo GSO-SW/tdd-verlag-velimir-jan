@@ -119,6 +119,7 @@ namespace VerlagTests
             //Assert
             Assert.AreEqual(b.ISBN, isbnMitPrüftiffer);
         }
+		
 		/*
 		[TestMethod]
         public void ConvertToISBN10_Isbn13WirdZuIsbn10Konvertiert()

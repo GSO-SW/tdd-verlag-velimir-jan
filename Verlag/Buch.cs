@@ -46,15 +46,17 @@ namespace Verlag
 
         public string ISBN
         {
+            //Minus entfernen
             get { return isbn; }
             set 
             { 
                 if (value.Length < 10)
                 {
                     int summe=0;
-                    for (int i = 1;i<=value.Length;i++)
+                    string isbnOhneBindestrich = value.Replace("-","");
+                    for (int i = 1;i<=isbnOhneBindestrich.Length;i++)
                     {
-                        summe = summe+ i*Convert.ToInt32(value[i]);
+                        summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
                     }
                     summe = summe % 11;
                     isbn = String.Concat(value, summe);
@@ -83,6 +85,7 @@ namespace Verlag
             this.Autor = autor;
             this.Titel = titel;
         }
+        
 
         public static string ConvertToISBN10(string isbn13)
         {
@@ -106,5 +109,6 @@ namespace Verlag
                 sum += (i + 1) * (isbn[i] - '0');
             }
         }
+        
     }
 }
