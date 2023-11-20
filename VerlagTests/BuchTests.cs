@@ -120,7 +120,7 @@ namespace VerlagTests
             Assert.AreEqual(b.ISBN, isbnMitPrüftiffer);
         }
 		
-		/*
+		
 		[TestMethod]
         public void ConvertToISBN10_Isbn13WirdZuIsbn10Konvertiert()
         {
@@ -151,6 +151,6 @@ namespace VerlagTests
 			//Act
 			Buch b = new Buch(unerlaubtesZeichen, "titel");
 		}
-		*/
+		
 	}
 }

@@ -46,25 +46,30 @@ namespace Verlag
 
         public string ISBN
         {
-            //Minus entfernen
+            
             get { return isbn; }
             set 
-            { 
-                if (value.Length < 10)
+            {
+                string isbnOhneBindestrich = value.Replace("-", "");
+
+                if (isbnOhneBindestrich.Length == 12)
                 {
                     int summe=0;
-                    string isbnOhneBindestrich = value.Replace("-","");
                     for (int i = 1;i<=isbnOhneBindestrich.Length;i++)
                     {
                         summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
                     }
                     summe = summe % 11;
-                    isbn = String.Concat(value, summe);
+                    isbn = String.Concat(value, summe.ToString());
 
+                }
+                else if(isbnOhneBindestrich.Length==13)
+                {
+                    isbn = value;
                 }
                 else
                 {
-                    isbn = value;
+                    throw new ArgumentException("ISBN muss entweder 12 Zeichen lang sein ohne Prüfziffer oder 13 Zeichen lang sein mit Prüfziffer");
                 }
             }
         }
@@ -86,7 +91,7 @@ namespace Verlag
             this.Titel = titel;
         }
         
-
+        
         public static string ConvertToISBN10(string isbn13)
         {
             int checkDigit;
