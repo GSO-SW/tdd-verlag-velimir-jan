@@ -14,7 +14,21 @@ namespace Verlag
         private int auflage;
         private string isbn;
 
-        
+
+        // Konstruktor keine Auflage
+        public Buch(string autor, string titel)
+        {
+            this.Autor = autor;
+            this.Titel = titel;
+            this.Auflage = 1;
+        }
+
+        // Konstruktor mit auflage
+        public Buch(string autor, string titel, int auflage) : this(autor, titel)
+        {
+            this.Auflage = auflage;
+        }
+
         public string Autor
         {
             get { return autor; }
@@ -75,23 +89,6 @@ namespace Verlag
           }
         
 
-        
-
-        // Konstruktor keine Auflage 
-        public Buch(string autor, string titel)
-        {
-            this.Autor = autor;
-            this.Titel = titel;
-            this.Auflage = 1;
-        }
-        
-
-        // Konstruktor mit auflage
-        public Buch(string autor, string titel, int auflage) : this(autor, titel)
-        {
-            this.Auflage = auflage;
-        }
-
         public string ConvertToISBN10(string isbn13)
         {
             int checkDigit;
@@ -113,6 +110,5 @@ namespace Verlag
                 sum += (i + 1) * (isbn[i] - '0');
             }
         }
-        
     }
 }
