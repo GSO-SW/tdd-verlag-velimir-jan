@@ -32,9 +32,24 @@ namespace Verlag
         public string Autor
         {
             get { return autor; }
-            set { autor = value; }
-        }
-    
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException(nameof(value), "Der Name des Autors darf nicht leer sein");
+                }
+
+                foreach (char c in value)
+                {
+                    if (!char.IsLetter(c))
+                    {
+                        throw new ArgumentException(nameof(c), "Der Name des Autors dard keine Sonderzeichen beinhalten");
+                    }
+                }
+
+                autor = value;
+            }
+        }   
 
         public string Titel
         {
@@ -58,35 +73,35 @@ namespace Verlag
             }
         }
 
-          public string ISBN
-          {
+        public string ISBN
+        {
 
-              get { return isbn; }
-              set 
-              {
-                  string isbnOhneBindestrich = value.Replace("-", "");
+            get { return isbn; }
+            set 
+            {
+                string isbnOhneBindestrich = value.Replace("-", "");
 
-                  if (isbnOhneBindestrich.Length == 12)
-                  {
-                      int summe=0;
-                      for (int i = 1;i<=isbnOhneBindestrich.Length;i++)
-                      {
-                          summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
-                      }
-                      summe = summe % 11;
-                      isbn = String.Concat(value, summe.ToString());
+                if (isbnOhneBindestrich.Length == 12)
+                {
+                    int summe=0;
+                    for (int i = 1;i<=isbnOhneBindestrich.Length;i++)
+                    {
+                        summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
+                    }
+                    summe = summe % 11;
+                    isbn = String.Concat(value, summe.ToString());
 
-                  }
-                  else if(isbnOhneBindestrich.Length==13)
-                  {
-                      isbn = value;
-                  }
-                  else
-                  {
-                      throw new ArgumentException("ISBN muss entweder 12 Zahlen lang sein ohne Prüfziffer oder 13 Zahlen lang mit Prüfziffer");
-                  }
-              }
-          }
+                }
+                else if(isbnOhneBindestrich.Length==13)
+                {
+                    isbn = value;
+                }
+                else
+                {
+                    throw new ArgumentException("ISBN muss entweder 12 Zahlen lang sein ohne Prüfziffer oder 13 Zahlen lang mit Prüfziffer");
+                }
+            }
+        }
         
 
         public string ConvertToISBN10(string isbn13)
