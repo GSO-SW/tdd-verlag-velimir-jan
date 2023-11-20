@@ -44,11 +44,38 @@ namespace Verlag
             }
         }
 
-        public string ISBN
-        {
-            get { return isbn; }
-            set { isbn = value; }
-        }
+          public string ISBN
+          {
+
+              get { return isbn; }
+              set 
+              {
+                  string isbnOhneBindestrich = value.Replace("-", "");
+
+                  if (isbnOhneBindestrich.Length == 12)
+                  {
+                      int summe=0;
+                      for (int i = 1;i<=isbnOhneBindestrich.Length;i++)
+                      {
+                          summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
+                      }
+                      summe = summe % 11;
+                      isbn = String.Concat(value, summe.ToString());
+
+                  }
+                  else if(isbnOhneBindestrich.Length==13)
+                  {
+                      isbn = value;
+                  }
+                  else
+                  {
+                      throw new ArgumentException("ISBN muss entweder 12 Zeichen lang sein ohne Prüfziffer oder 13 Zeichen lang sein mit Prüfziffer");
+                  }
+              }
+          }
+        
+
+        
 
         // Konstruktor keine Auflage 
         public Buch(string autor, string titel)
@@ -65,13 +92,12 @@ namespace Verlag
             this.Auflage = auflage;
         }
 
-        public string ConvertToISBN10()
+        public string ConvertToISBN10(string isbn13)
         {
             int checkDigit;
             string isbn10 = this.ISBN.Replace("-", "").Remove(0,3);
             isbn10 = isbn10.Remove(9,1);
-            checkDigit = 
-
+            checkDigit = ;
         }
 
         public static int CalculateISBN10CheckDigit(string isbn) 
@@ -87,5 +113,6 @@ namespace Verlag
                 sum += (i + 1) * (isbn[i] - '0');
             }
         }
+        
     }
 }
