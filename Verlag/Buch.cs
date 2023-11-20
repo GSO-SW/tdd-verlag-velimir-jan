@@ -44,35 +44,38 @@ namespace Verlag
             }
         }
 
-        public string ISBN
-        {
-            
-            get { return isbn; }
-            set 
-            {
-                string isbnOhneBindestrich = value.Replace("-", "");
+          public string ISBN
+          {
 
-                if (isbnOhneBindestrich.Length == 12)
-                {
-                    int summe=0;
-                    for (int i = 1;i<=isbnOhneBindestrich.Length;i++)
-                    {
-                        summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
-                    }
-                    summe = summe % 11;
-                    isbn = String.Concat(value, summe.ToString());
+              get { return isbn; }
+              set 
+              {
+                  string isbnOhneBindestrich = value.Replace("-", "");
 
-                }
-                else if(isbnOhneBindestrich.Length==13)
-                {
-                    isbn = value;
-                }
-                else
-                {
-                    throw new ArgumentException("ISBN muss entweder 12 Zeichen lang sein ohne Prüfziffer oder 13 Zeichen lang sein mit Prüfziffer");
-                }
-            }
-        }
+                  if (isbnOhneBindestrich.Length == 12)
+                  {
+                      int summe=0;
+                      for (int i = 1;i<=isbnOhneBindestrich.Length;i++)
+                      {
+                          summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
+                      }
+                      summe = summe % 11;
+                      isbn = String.Concat(value, summe.ToString());
+
+                  }
+                  else if(isbnOhneBindestrich.Length==13)
+                  {
+                      isbn = value;
+                  }
+                  else
+                  {
+                      throw new ArgumentException("ISBN muss entweder 12 Zeichen lang sein ohne Prüfziffer oder 13 Zeichen lang sein mit Prüfziffer");
+                  }
+              }
+          }
+        
+
+        
 
         // Konstruktor keine Auflage 
         public Buch(string autor, string titel)
