@@ -95,7 +95,7 @@ namespace VerlagTests
         public void Buch_ISBNKannEingegebenWerden()
 		{
 			//Arrange
-			string isbn13 = "978-3770436163";
+			string isbn13 = "978-3-431-07055-2";
 			Buch b = new Buch("autor", "titel");
 
             //Act
@@ -109,8 +109,8 @@ namespace VerlagTests
         public void Buch_ISBNPrüfzifferWirdErgänzt()
 		{
             //Arrange
-            string isbnOhnePrüfziffer = "978-3770436164";
-            string isbnMitPrüftiffer = "978-37704361649";
+            string isbnOhnePrüfziffer = "978-3-431-07055";
+            string isbnMitPrüftiffer = "978-3-431-07055-2";
             Buch b = new Buch("autor", "titel");
 
 			//Act
@@ -124,13 +124,13 @@ namespace VerlagTests
         public void ConvertToISBN10_Isbn13WirdZuIsbn10Konvertiert()
         {
             //Arrange
-            string isbn13 = "978-3770436064";
-			string isbn10 = "3770436067";
+            string isbn13 = "978-3-431-07055-2";
+			string isbn10 = "3431070558";
             Buch b = new Buch("autor", "titel");
 			b.ISBN = isbn13;
 
 			//Act
-			string testIsbn10 = ConvertToISBN10(b.ISBN);
+			string testIsbn10 = b.ConvertToISBN10();
 
             //Assert
             Assert.AreEqual(testIsbn10, isbn10);

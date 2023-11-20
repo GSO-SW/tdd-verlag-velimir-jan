@@ -60,17 +60,15 @@ namespace Verlag
         
 
         // Konstruktor mit auflage
-        public Buch(string autor, string titel, int auflage)
+        public Buch(string autor, string titel, int auflage) : this(autor, titel)
         {
             this.Auflage = auflage;
-            this.Autor = autor;
-            this.Titel = titel;
         }
 
-        public static string ConvertToISBN10(string isbn13)
+        public string ConvertToISBN10()
         {
             int checkDigit;
-            string isbn10 = isbn13.Replace("-", "").Remove(0,3);
+            string isbn10 = this.ISBN.Replace("-", "").Remove(0,3);
             isbn10 = isbn10.Remove(9,1);
             checkDigit = 
 
