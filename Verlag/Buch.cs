@@ -69,7 +69,7 @@ namespace Verlag
                   }
                   else
                   {
-                      throw new ArgumentException("ISBN muss entweder 12 Zeichen lang sein ohne Prüfziffer oder 13 Zeichen lang sein mit Prüfziffer");
+                      throw new ArgumentException("ISBN muss entweder 12 Zahlen lang sein ohne Prüfziffer oder 13 Zahlen lang mit Prüfziffer");
                   }
               }
           }
