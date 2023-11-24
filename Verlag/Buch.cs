@@ -9,6 +9,7 @@ namespace Verlag
 {
     public class Buch
     {
+        static char[] allowedSpecialCharacters = { '.', ' ' };
         private string autor;
         private string titel;
         private int auflage;
@@ -41,9 +42,9 @@ namespace Verlag
 
                 foreach (char c in value)
                 {
-                    if (!char.IsLetter(c))
+                    if (!char.IsLetter(c) && !allowedSpecialCharacters.Contains(c))
                     {
-                        throw new ArgumentException(nameof(c), "Der Name des Autors dard keine Sonderzeichen beinhalten");
+                        throw new ArgumentException(nameof(c), "Der Name des Autors darf keine Sonderzeichen beinhalten");
                     }
                 }
 
