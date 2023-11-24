@@ -12,7 +12,7 @@ namespace Verlag
         private string autor;
         private string titel;
         private int auflage;
-        private string isbn;
+        private string isbn13;
 
 
         // Konstruktor keine Auflage
@@ -73,10 +73,10 @@ namespace Verlag
             }
         }
 
-        public string ISBN
+        public string ISBN13
         {
 
-            get { return isbn; }
+            get { return isbn13; }
             set 
             {
                 string isbnOhneBindestrich = value.Replace("-", "");
@@ -89,12 +89,12 @@ namespace Verlag
                         summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
                     }
                     summe = summe % 11;
-                    isbn = String.Concat(value, summe.ToString());
+                    isbn13 = String.Concat(value, summe.ToString());
 
                 }
                 else if(isbnOhneBindestrich.Length==13)
                 {
-                    isbn = value;
+                    isbn13 = value;
                 }
                 else
                 {
@@ -105,7 +105,7 @@ namespace Verlag
 
         public string ConvertToISBN10()
         {
-            string isbn10 = this.ISBN.Replace("-", "").Remove(0,3);
+            string isbn10 = this.ISBN13.Replace("-", "").Remove(0,3);
             isbn10 = isbn10.Remove(9,1);
             return isbn10 + CalculateISBN10CheckDigit(isbn10).ToString();
         }

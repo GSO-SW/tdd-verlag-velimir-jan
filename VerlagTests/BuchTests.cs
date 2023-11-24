@@ -99,10 +99,10 @@ namespace VerlagTests
 			Buch b = new Buch("autor", "titel");
 
             //Act
-            b.ISBN = isbn13;
+            b.ISBN13 = isbn13;
 
             //Assert
-            Assert.AreEqual(b.ISBN, isbn13);
+            Assert.AreEqual(b.ISBN13, isbn13);
         }
 
         [TestMethod]
@@ -114,10 +114,10 @@ namespace VerlagTests
             Buch b = new Buch("autor", "titel");
 
 			//Act
-			b.ISBN = isbnOhnePrüfziffer;
+			b.ISBN13 = isbnOhnePrüfziffer;
 
             //Assert
-            Assert.AreEqual(b.ISBN, isbnMitPrüftiffer);
+            Assert.AreEqual(b.ISBN13, isbnMitPrüftiffer);
         }
 		
 		
@@ -128,7 +128,7 @@ namespace VerlagTests
             string isbn13 = "978-3-431-07055-2";
 			string isbn10 = "3431070558";
             Buch b = new Buch("autor", "titel");
-			b.ISBN = isbn13;
+			b.ISBN13 = isbn13;
 
 			//Act
 			string testIsbn10 = b.ConvertToISBN10();
