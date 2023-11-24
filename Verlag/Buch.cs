@@ -90,7 +90,9 @@ namespace Verlag
                         summe = summe+ i*Convert.ToInt32(isbnOhneBindestrich[i]);
                     }
                     summe = summe % 11;
-                    isbn13 = String.Concat(value, summe.ToString());
+
+                    isbn13 = String.Concat(isbnOhneBindestrich, summe.ToString());
+
 
                 }
                 else if(isbnOhneBindestrich.Length==13)
